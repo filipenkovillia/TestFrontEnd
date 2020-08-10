@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form id="countForm">
+	Count of guests:
+	<input type="number" min="0" name="countOfGuests"><br>
+</form>
+<form id="namesForm" onchange="displayGuestNames()">
+	
+</form>
+<p id="listOfGuests"></p>
+<script>
+	var numberOfGuests = document.getElementById("countForm").children[0];
+	numberOfGuests.oninput = function(){
+		var text = "";
+		var i;
+		for(i = 0; i < numberOfGuests.value; i++)
+		{
+			text += "<input type=\"text\" placeholder=\"Name\"> <input type=\"text\" placeholder=\"Surname\"><br>";
+		}
+		document.getElementById("namesForm").innerHTML = "Fill Guests:<br>" + text;
+		document.getElementById("listOfGuests").innerHTML = "";
+	}
+	function displayGuestNames() 
+	{
+		var x = document.getElementById("namesForm");
+		var text = "";
+		var i;
+		for(i = 0; i < x.length; i += 2)
+		{
+			if(x.elements[i].value && x.elements[i + 1].value)
+			{
+				text += x.elements[i].value + " " + x.elements[i + 1].value + "<br>";
+			}
+			
+		}
+		document.getElementById("listOfGuests").innerHTML = "Guests:<br>" + text;
+	}
+</script>
+</body>
+</html>
